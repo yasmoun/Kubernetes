@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commande-deployment
+  labels:
+    app: commande-app
+spec:
+  replicas: 1
+  selector:																	
+    matchLabels:
+      app: commande-app
+  template:
+    metadata:
+      labels:
+        app: commande-app
+    spec:
+      containers:
+      - name: commande-container
+        image: jassmin/commandes  
+
+        env:
+        - name: SPRING_DATASOURCE_URL  
+          value: jdbc:mysql://localhost:3306/commandes  
+        - name: SPRING_DATASOURCE_USERNAME  
+          value: root  
+        - name: SPRING_DATASOURCE_PASSWORD  
+          value: lnnaya 
